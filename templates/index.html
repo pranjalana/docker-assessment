@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1>Welcome to Hospital Scheduler</h1>
+        <p>This is a containerized version of our appointment system.</p>
+        
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Quick Actions</h5>
+                <a href="/appointments" class="btn btn-primary">View Appointments</a>
+                <button class="btn btn-success" onclick="bookAppointment()">Book Appointment</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function bookAppointment() {
+    const patientName = prompt("Enter patient name:");
+    const doctorName = prompt("Enter doctor name:"); 
+    const date = prompt("Enter date (YYYY-MM-DD):");
+    const time = prompt("Enter time (HH:MM):");
+    
+    if (patientName && doctorName && date && time) {
+        fetch('/api/appointments', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                patient_name: patientName,
+                doctor_name: doctorName, 
+                date: date,
+                time: time
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('Appointment booked! ID: ' + data.appointment_id);
+        });
+    }
+}
+</script>
+{% endblock %}
