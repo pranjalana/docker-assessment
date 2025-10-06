@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  flask:
+    build: 
+      context: ./flask-app
+      dockerfile: Dockerfile
+    container_name: hospital-flask-app
+    ports:
+      - "5000:5000"
+    networks:
+      - hospital-network
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: hospital-nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - flask
+    networks:
+      - hospital-network
+
+networks:
+  hospital-network:
+    driver: bridge

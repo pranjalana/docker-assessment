@@ -10,14 +10,11 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
-COPY src/ ./src/
-COPY templates/ ./templates/
-COPY database/ ./database/
-COPY config/ ./config/
+# Copy ALL application files
+COPY . .
 
 # Create necessary directories
-RUN mkdir -p logs reports
+RUN mkdir -p database logs reports
 
 # Expose port 5000 for Flask app
 EXPOSE 5000

@@ -1,0 +1,40 @@
+/* Custom styles for Hospital Scheduler */
+.hospital-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.emergency-btn {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+.emergency-btn:hover {
+    background: linear-gradient(45deg, #ff4b2b, #ff416c);
+    color: white;
+}
+
+.appointment-card {
+    border-left: 4px solid #667eea;
+    transition: transform 0.2s;
+}
+
+.appointment-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.doctor-badge {
+    background: #e3f2fd;
+    color: #1976d2;
+    font-size: 0.8em;
+}
+
+.patient-mrn {
+    font-family: 'Courier New', monospace;
+    background: #f5f5f5;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}

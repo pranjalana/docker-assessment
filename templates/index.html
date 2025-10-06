@@ -3,42 +3,53 @@
 {% block content %}
 <div class="row">
     <div class="col-12">
-        <h1>Welcome to Hospital Scheduler</h1>
-        <p>This is a containerized version of our appointment system.</p>
-        
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Quick Actions</h5>
-                <a href="/appointments" class="btn btn-primary">View Appointments</a>
-                <button class="btn btn-success" onclick="bookAppointment()">Book Appointment</button>
+        <div class="jumbotron bg-light p-5 rounded mb-4">
+            <h1 class="display-4">🏥 Hospital Appointment Scheduler</h1>
+            <p class="lead">Manage patient appointments, doctor schedules, and medical records efficiently.</p>
+            <hr class="my-4">
+            <p>Book appointments, track utilization, and analyze patient flow with our comprehensive scheduling system.</p>
+            <div class="mt-4">
+                <a class="btn btn-primary btn-lg me-2" href="/appointments" role="button">
+                    📅 View Appointments
+                </a>
+                <button class="btn btn-success btn-lg me-2" onclick="bookAppointment()">
+                    📋 Book Appointment
+                </button>
+                <button class="btn emergency-btn btn-lg" onclick="bookEmergency()">
+                    🚨 Emergency
+                </button>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-function bookAppointment() {
-    const patientName = prompt("Enter patient name:");
-    const doctorName = prompt("Enter doctor name:"); 
-    const date = prompt("Enter date (YYYY-MM-DD):");
-    const time = prompt("Enter time (HH:MM):");
-    
-    if (patientName && doctorName && date && time) {
-        fetch('/api/appointments', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                patient_name: patientName,
-                doctor_name: doctorName, 
-                date: date,
-                time: time
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert('Appointment booked! ID: ' + data.appointment_id);
-        });
-    }
-}
-</script>
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <div class="card appointment-card h-100">
+            <div class="card-body">
+                <h5 class="card-title">👥 Patient Management</h5>
+                <p class="card-text">Manage patient records and medical history with unique MRN tracking.</p>
+                <small class="text-muted">Secure and compliant</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card appointment-card h-100">
+            <div class="card-body">
+                <h5 class="card-title">👨‍⚕️ Doctor Scheduling</h5>
+                <p class="card-text">Optimize doctor schedules with smart conflict detection and availability management.</p>
+                <small class="text-muted">Efficient scheduling</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card appointment-card h-100">
+            <div class="card-body">
+                <h5 class="card-title">📊 Analytics & Reports</h5>
+                <p class="card-text">Track utilization rates, patient flow, and performance metrics.</p>
+                <small class="text-muted">Data-driven insights</small>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
